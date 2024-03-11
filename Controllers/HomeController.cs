@@ -18,17 +18,17 @@ namespace CLDV_POE_ST10249266.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult ContactUs()
         {
             return View();
         }
 
         public IActionResult AboutUs()
+        {
+            return View();
+        }
+
+        public IActionResult MyWork()
         {
             return View();
         }
