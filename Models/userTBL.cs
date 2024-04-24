@@ -30,24 +30,24 @@ namespace CLDV_POE_ST10249266.Models
             return rowsAffected;
         }
 
-        public int SelectUser(string email, string password)
-        {
-            int userId = -1; // Default value if user is not found
-            using (SqlConnection con = new SqlConnection(con_string))
-            {
-                string sql = "SELECT userID FROM userTable WHERE userEmail = @Email AND userPassword = @Password";
-                SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@Password", password);
+        //public int SelectUser(string email, string password)
+        //{
+        //    int userId = -1; // Default value if user is not found
+        //    using (SqlConnection con = new SqlConnection(con_string))
+        //    {
+        //        string sql = "SELECT userID FROM userTable WHERE userEmail = @Email AND userPassword = @Password";
+        //        SqlCommand cmd = new SqlCommand(sql, con);
+        //        cmd.Parameters.AddWithValue("@Email", email);
+        //        cmd.Parameters.AddWithValue("@Password", password);
 
-                con.Open();
-                object result = cmd.ExecuteScalar();
-                if (result != null && result != DBNull.Value)
-                {
-                    userId = Convert.ToInt32(result);
-                }
-            }
-            return userId;
-        }
+        //        con.Open();
+        //        object result = cmd.ExecuteScalar();
+        //        if (result != null && result != DBNull.Value)
+        //        {
+        //            userId = Convert.ToInt32(result);
+        //        }
+        //    }
+        //    return userId;
+        //}
     }
 }

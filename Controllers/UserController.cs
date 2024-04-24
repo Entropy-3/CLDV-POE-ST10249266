@@ -8,7 +8,7 @@ namespace CLDV_POE_ST10249266.Controllers
         public userTBL usrtbl = new userTBL();
 
         [HttpPost]
-        public ActionResult Login(userTBL Users)
+        public ActionResult SignUp(userTBL Users)
         {
             var result = usrtbl.insert_User(Users);
             return RedirectToAction("Index", "Home");

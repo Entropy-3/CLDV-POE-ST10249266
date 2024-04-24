@@ -4,7 +4,7 @@
 @{
 }
 <body>
-    <form action="Login" method="post">
+    <form action="SignUp" method="post">
         <p>Sign Up</p>
         <input type="text" name="Name" placeholder="Name" required>
         <input type="text" name="Surname" placeholder="Surname" required>
@@ -12,4 +12,14 @@
         <input type="text" name="Password" placeholder="********" required>
         <button type="submit">Submit</button>
     </form>
+</body>
+
+<body>
+    <form asp-controller="Login" asp-action="Login" method="post">
+        <p>Please enter your email and password:</p>
+        <input type="text" name="email" placeholder="example@gmail.com" required>
+        <input type="text" name="Password" placeholder="*****" required>
+        <button type="submit">Submit</button>
+    </form>
+
 </body>
