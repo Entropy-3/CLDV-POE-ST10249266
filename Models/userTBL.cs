@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Data.SqlClient;
 
 namespace CLDV_POE_ST10249266.Models
 {
@@ -7,7 +8,7 @@ namespace CLDV_POE_ST10249266.Models
         public static string con_string = "Server=tcp:st10249266-sql-server.database.windows.net,1433;Initial Catalog=CLDV-DBS;Persist Security Info=False;User ID=entropy-3;Password=hifr@220404;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public static SqlConnection con = new SqlConnection(con_string);
-
+        +
         public string Name { get; set; }
 
         public string Surname { get; set; }
@@ -29,25 +30,5 @@ namespace CLDV_POE_ST10249266.Models
             con.Close();
             return rowsAffected;
         }
-
-        //public int SelectUser(string email, string password)
-        //{
-        //    int userId = -1; // Default value if user is not found
-        //    using (SqlConnection con = new SqlConnection(con_string))
-        //    {
-        //        string sql = "SELECT userID FROM userTable WHERE userEmail = @Email AND userPassword = @Password";
-        //        SqlCommand cmd = new SqlCommand(sql, con);
-        //        cmd.Parameters.AddWithValue("@Email", email);
-        //        cmd.Parameters.AddWithValue("@Password", password);
-
-        //        con.Open();
-        //        object result = cmd.ExecuteScalar();
-        //        if (result != null && result != DBNull.Value)
-        //        {
-        //            userId = Convert.ToInt32(result);
-        //        }
-        //    }
-        //    return userId;
-        //}
     }
 }

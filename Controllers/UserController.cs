@@ -15,6 +15,10 @@ namespace CLDV_POE_ST10249266.Controllers
         }
 
         [HttpGet]
+        public ActionResult SignUp()
+        {
+            return View(usrtbl);
+        }
         public ActionResult Login()
         {
             return View(usrtbl);
