@@ -8,7 +8,7 @@ namespace CLDV_POE_ST10249266.Models
         public static string con_string = "Server=tcp:st10249266-sql-server.database.windows.net,1433;Initial Catalog=CLDV-DBS;Persist Security Info=False;User ID=entropy-3;Password=hifr@220404;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public static SqlConnection con = new SqlConnection(con_string);
-        +
+        
         public string Name { get; set; }
 
         public string Surname { get; set; }
