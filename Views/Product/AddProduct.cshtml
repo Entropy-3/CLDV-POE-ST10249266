@@ -80,16 +80,30 @@
     </style>
 </head>
 
-<form class="form">
+<body style="background-color:#1a1a1a">
+    <form class="form" action="AddProduct" method="post">
     <span class="input-span" action="AddProduct" method="post">
-        <label for="email" class="label">Product Name</label>
-        <input type="text" name="productName" id="email">
+        <label class="label">Product Name:</label>
+        <input type="text" name="productName">
     </span>
     <span class="input-span">
-        <label for="password" class="label">Password</label>
-        <input type="text" name="password" id="password">
+        <label class="label">Product Description:</label>
+        <input type="text" name="productDescription">
     </span>
-    <span class="span"><a href="#">Forgot password?</a></span>
-    <input class="submit" type="submit" value="Log in">
-    <span class="span">Don't have an account? <a href="#">Sign up</a></span>
+    <span class="input-span">
+        <label class="label">Product Price:</label>
+        <input type="text" name="productPrice">
+    </span>
+    <span class="input-span">
+        <label class="label">Product Quantity:</label>
+        <input type="text" name="productQuantity">
+    </span>
+    <span class="input-span">
+        <label class="label">Product Image (URL):</label>
+        <input type="text" name="productImage">
+    </span>
+    <div style="text-align:center">
+    <input class="submit" type="submit">
+    </div>
 </form>
+</body>
