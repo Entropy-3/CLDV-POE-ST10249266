@@ -42,23 +42,14 @@ namespace CLDV_POE_ST10249266.Models
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    //ProductDisplayModel product = new ProductDisplayModel();
-                    //product.Name = Convert.ToString(reader["ProductName"]);
-                    //product.Description = Convert.ToString(reader["productDescription"]);
-                    //product.Price = Convert.ToDecimal(reader["ProductPrice"]);
-                    //product.Quantity = Convert.ToDecimal(reader["productQuantity"]);
-                    //product.Availability = Convert.ToBoolean(reader["ProductAvailability"]);
-                    //product.Image = Convert.ToString(reader["productImage"]);
-                    //products.Add(product);
-                    products.Add(new ProductDisplayModel
-                    {
-                        Name = Convert.ToString(reader["productName"]),
-                        Description = Convert.ToString(reader["productDescription"]),
-                        Price = Convert.ToDecimal(reader["productPrice"]),
-                        Quantity = Convert.ToDecimal(reader["productQuantity"]),
-                        Availability = Convert.ToBoolean(reader["productAvailability"]),
-                        Image = reader["productImage"] as string, // Change this line
-                    });
+                    ProductDisplayModel product = new ProductDisplayModel();
+                    product.Name = Convert.ToString(reader["ProductName"]);
+                    product.Description = Convert.ToString(reader["productDescription"]);
+                    product.Price = Convert.ToDecimal(reader["ProductPrice"]);
+                    product.Quantity = Convert.ToDecimal(reader["productQuantity"]);
+                    product.Availability = Convert.ToBoolean(reader["ProductAvailability"]);
+                    product.Image = Convert.ToString(reader["productImage"]);
+                    products.Add(product);
                 }
                 reader.Close();
             }

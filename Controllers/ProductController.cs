@@ -22,7 +22,8 @@ namespace CLDV_POE_ST10249266.Controllers
 
         public IActionResult MyWork()
         {
-            return View();
+            var products = ProductDisplayModel.SelectProducts();
+            return View(products);
         }
     }
 }

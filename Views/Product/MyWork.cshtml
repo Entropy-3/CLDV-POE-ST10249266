@@ -1,13 +1,74 @@
 ﻿@model IEnumerable<ProductDisplayModel>
 
-<body style="background-image:url(https://images.unsplash.com/photo-1487088678257-3a541e6e3922?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); background-size: auto">
-    <div style="font-weight:bold; background-color: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 20px;">
-    <h2 style="text-align:center">
-        My work
-    </h2>
-</div>
+<style>
+    body {
+        background-image: url(https://images.unsplash.com/photo-1487088678257-3a541e6e3922?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+        background-size: auto;
+    }
 
-<br />
+    .header, .product {
+        font-weight: bold;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+
+        .header h2 {
+            text-align: center;
+        }
+
+        .product img {
+            width: 200px;
+            height: 200px;
+            margin-right: 20px;
+        }
+
+    .product {
+        display: flex;
+    }
+    .product-right {
+        flex-direction: row-reverse;
+        align-items: flex-start;
+    }
+    .product-right img {
+        margin-right: 0;
+        margin-left: 20px;
+    }
+
+    .product-details {
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        max-width: 600px;
+    }
+
+    .product-right .product-details {
+        text-align: right;
+    }
+
+    .product img {
+        width: 400px;
+        height: 400px;
+        margin-right: 20px;
+    }
+
+    .product-right img {
+        margin-right: 0;
+        margin-left: 30px;
+    }
+</style>
+
+<body>
+    <div class="header">
+        <h2>My work</h2>
+    </div>
+
+    <br />
+
+    @{
+        bool side = true;
+    }
 
     @if (Model == null)
     {
@@ -15,27 +76,44 @@
     }
     else
     {
-        @foreach (var product in Model)
+        foreach (var product in Model)
         {
-            <div class="product">
-                <img src="@product.Image" alt="@product.Name">
-                <h2>@product.Name</h2>
-                <p>@product.Price</p>
-                <!-- Add other product details as needed -->
-            </div>
-
-            <div style="font-weight:bold; background-color: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 20px;">
-
-                <div style="display: flex; align-items: center;">
-                    <img src="@product.Image" width="400" height="400" style="margin-right: 20px;">
-                    <h2>@product.Name</h2>
-                    <p style="font-weight:bold;">
-                        @product.Description
-                    </p>
+            if (side)
+            {
+                // Layout with image on the left
+                <div class="product">
+                    <img src="@product.Image" alt="@product.Name">
+                    <div class="product-details">
+                        <h2>@product.Name</h2>
+                        <p>@product.Description</p>
+                        <p>Price: R @product.Price</p>
+                        <p>Quantity: @product.Quantity</p>
+                        <p>Availability: @product.Availability</p>
+                    </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                // Layout with image on the right
+                <div class="product product-right">
+                    <img src="@product.Image" alt="@product.Name">
+                    <div class="product-details">
+                        <h2>@product.Name</h2>
+                        <p>@product.Description</p>
+                        <p>Price: R @product.Price</p>
+                        <p>Quantity: @product.Quantity</p>
+                        <p>Availability: @product.Availability</p>
+                    </div>
+                </div>
+            }
+            side = !side; // Flip the value of 'side' for the next product
         }
     }
+</body>
+
+
+
+
     
 
     @* <div style="font-weight:bold; background-color: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 20px;">
@@ -136,4 +214,4 @@
         </div>
     </div> *@
 
-</body>
+@* </body> *@
