@@ -19,9 +19,9 @@ namespace CLDV_POE_ST10249266.Controllers
             int userID = loginModel.SelectUser(email, password);
             if (userID != -1)
             {
-                // User found, proceed with login logic (e.g., set authentication cookie)
-                // For demonstration, redirecting to a dummy page
+                HttpContext.Session.SetInt32("userID", userID);
                 return RedirectToAction("Index", "Home", new { userID = userID });
+
             }
             else
             {

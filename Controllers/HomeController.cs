@@ -13,14 +13,16 @@ namespace CLDV_POE_ST10249266.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(int userID)
+        public IActionResult Index()
         {
             // Retrieve all products from the database
             List<productTBL> products = productTBL.get_Products();
 
             // Pass products and userID to the view
-            ViewData["Products"] = products;
+            //ViewData["Products"] = products;
+            int? userID = HttpContext.Session.GetInt32("userID");
             ViewData["UserID"] = userID;
+
 
             return View();
         }
