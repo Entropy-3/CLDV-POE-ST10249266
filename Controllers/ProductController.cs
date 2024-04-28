@@ -18,6 +18,11 @@ namespace CLDV_POE_ST10249266.Controllers
         [HttpGet]
         public ActionResult AddProduct()
         {
+            if (HttpContext.Session.GetInt32("userID") == null)
+            {
+                TempData["AlertMessage"] = "Please log in to sell products.";
+                return RedirectToAction("Login", "User");
+            }
             return View(prodtbl);
         }
 
