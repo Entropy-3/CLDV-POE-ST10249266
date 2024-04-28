@@ -22,13 +22,13 @@ namespace CLDV_POE_ST10249266.Models
 
         public int insert_Product(productTBL m)
         {
-            m.productAvailability = m.productQuantity > 0;
             string sql = "INSERT INTO tblProducts (productName, productDescription, productPrice, productQuantity, productAvailability, productImage) VALUES (@productName, @productDescription, @productPrice, @productQuantity, @productAvailability, @productImage)";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@productName", m.productName);
             cmd.Parameters.AddWithValue("@productDescription", m.productDescription);
             cmd.Parameters.AddWithValue("@productPrice", m.productPrice);
             cmd.Parameters.AddWithValue("@productQuantity", m.productQuantity);
+            m.productAvailability = m.productQuantity > 0;
             cmd.Parameters.AddWithValue("@productAvailability", m.productAvailability);
             cmd.Parameters.AddWithValue("@productImage", m.productImage);
             con.Open();
