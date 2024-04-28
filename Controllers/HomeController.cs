@@ -19,10 +19,8 @@ namespace CLDV_POE_ST10249266.Controllers
             List<productTBL> products = productTBL.get_Products();
 
             // Pass products and userID to the view
-            //ViewData["Products"] = products;
             int? userID = HttpContext.Session.GetInt32("userID");
             ViewData["UserID"] = userID;
-
 
             return View();
         }

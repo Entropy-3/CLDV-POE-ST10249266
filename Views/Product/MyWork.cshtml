@@ -61,10 +61,22 @@
 
 <body>
     <div class="header">
-        <h2>My work</h2>
+        @{
+            var userID = ViewData["userID"];
+        }
+        <h2>My work
+
+            @if (userID != null)
+            {
+                <p>User ID: @userID</p>
+            }
+        </h2>
     </div>
 
     <br />
+    
+    
+
 
     @{
         bool side = true;
@@ -89,6 +101,11 @@
                         <p>Price: R @product.Price</p>
                         <p>Quantity: @product.Quantity</p>
                         <p>Availability: @product.Availability</p>
+                        <form asp-action="AddTransaction" asp-controller="Transaction" method="post">
+                            <input type="hidden" asp-for="@ViewData["UserID"]" name="UserID" />
+                            <input type="hidden" value="@product.ID" name="ProductID" />
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
                     </div>
                 </div>
             }
@@ -103,8 +120,14 @@
                         <p>Price: R @product.Price</p>
                         <p>Quantity: @product.Quantity</p>
                         <p>Availability: @product.Availability</p>
+                        <form asp-action="AddTransaction" asp-controller="Transaction" method="post">
+                            <input type="hidden" asp-for="@ViewData["UserID"]" name="UserID" />
+                            <input type="hidden" value="@product.ID" name="ProductID" />
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
                     </div>
                 </div>
+                
             }
             side = !side; // Flip the value of 'side' for the next product
         }

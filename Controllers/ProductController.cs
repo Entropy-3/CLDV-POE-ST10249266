@@ -5,6 +5,7 @@ namespace CLDV_POE_ST10249266.Controllers
 {
     public class ProductController : Controller
     {
+       
         public productTBL prodtbl = new productTBL();
 
         [HttpPost]
@@ -22,8 +23,14 @@ namespace CLDV_POE_ST10249266.Controllers
 
         public IActionResult MyWork()
         {
+            int? userID = HttpContext.Session.GetInt32("userID");
+            ViewData["UserID"] = userID;
             var products = ProductDisplayModel.SelectProducts();
             return View(products);
+        }
+        public IActionResult Transactions()
+        {
+            return View();
         }
     }
 }
