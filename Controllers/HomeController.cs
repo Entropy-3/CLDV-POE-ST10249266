@@ -13,8 +13,15 @@ namespace CLDV_POE_ST10249266.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int userID)
         {
+            // Retrieve all products from the database
+            List<productTBL> products = productTBL.get_Products();
+
+            // Pass products and userID to the view
+            ViewData["Products"] = products;
+            ViewData["UserID"] = userID;
+
             return View();
         }
 

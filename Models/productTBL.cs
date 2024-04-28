@@ -36,5 +36,33 @@ namespace CLDV_POE_ST10249266.Models
             con.Close();
             return rowsAffected;
         }
+
+        public static List<productTBL> get_Products()
+        {
+            List<productTBL> products = new List<productTBL>();
+
+            using (SqlConnection con = new SqlConnection(con_string))
+            {
+                string sql = "SELECT * FROM tblProducts";
+                SqlCommand cmd = new SqlCommand(sql, con);
+
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    productTBL product = new productTBL();
+                    product.productName = Convert.ToString(rdr["productName"]);
+                    product.productDescription = Convert.ToString(rdr["productDescription"]);
+                    product.productPrice = Convert.ToDecimal(rdr["productPrice"]);
+                    product.productQuantity = Convert.ToDecimal(rdr["productQuantity"]);
+                    product.productAvailability = Convert.ToBoolean(rdr["productAvailability"]);
+                    product.productImage = Convert.ToString(rdr["productImage"]);
+
+                    products.Add(product);
+                }
+            }
+
+            return products;
+        }
     }
 }
