@@ -35,7 +35,10 @@ namespace CLDV_POE_ST10249266.Controllers
         }
         public IActionResult Transactions()
         {
-            return View();
+            int? userID = HttpContext.Session.GetInt32("userID");
+            ViewData["UserID"] = userID;
+            var transactions = TransactionTBL.GetTransactions((int)userID);
+            return View(transactions);
         }
     }
 }

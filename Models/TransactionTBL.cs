@@ -32,35 +32,28 @@ namespace CLDV_POE_ST10249266.Models
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
 
-        //public TransactionTBL(int transid, int proid, string proname, decimal proprice)
-        //{
-        //    transactionID = transid;
-        //    ProductID = proid;
-        //    product_name = proname;
-        //    product_price = proprice;
-        //}
-
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
-        public static List<TransactionTBL> GetTransactions()
+        public static List<TransactionTBL> GetTransactions(int userid)
         {
             List<TransactionTBL> transactions = new List<TransactionTBL>();
 
             {
-                string sql = "SELECT product_id, productName, productDescription, productPrice, productQuantity, productAvailability, productImage FROM tblProducts";
+                string sql = "SELECT tblTransactions.transaction_id, tblTransactions.product_id, tblProducts.productName, tblProducts.productPrice\r\nFROM tblUsers\r\nJOIN tblTransactions ON tblUsers.user_id = tblTransactions.user_id\r\nJOIN tblProducts ON tblTransactions.product_id = tblProducts.product_id\r\nWHERE tblUsers.user_id = @user_id;";
                 SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@user_id", userid);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     TransactionTBL transaction = new TransactionTBL();
-                    transaction.transactionID = Convert.ToInt32(reader["product_id"]);
+                    transaction.transactionID = Convert.ToInt32(reader["transaction_id"]);
                     transaction.ProductID = Convert.ToInt32(reader["product_id"]);
                     transaction.product_name = Convert.ToString(reader["ProductName"]);
-                    transaction.product_price = Convert.ToDecimal(reader["product_id"]);
+                    transaction.product_price = Convert.ToDecimal(reader["productPrice"]);
                     
                     transactions.Add(transaction);
                 }
                 reader.Close();
+                con.Close();
             }
             return transactions;
         }
