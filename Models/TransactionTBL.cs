@@ -31,7 +31,6 @@ namespace CLDV_POE_ST10249266.Models
             return rowsAffected;
         }
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
-
         public static List<TransactionTBL> GetTransactions(int userid)
         {
             List<TransactionTBL> transactions = new List<TransactionTBL>();
@@ -49,7 +48,6 @@ namespace CLDV_POE_ST10249266.Models
                     transaction.ProductID = Convert.ToInt32(reader["product_id"]);
                     transaction.product_name = Convert.ToString(reader["ProductName"]);
                     transaction.product_price = Convert.ToDecimal(reader["productPrice"]);
-                    
                     transactions.Add(transaction);
                 }
                 reader.Close();
