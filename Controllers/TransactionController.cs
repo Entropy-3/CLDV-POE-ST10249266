@@ -18,6 +18,12 @@ namespace CLDV_POE_ST10249266.Controllers
         [HttpPost]
         public ActionResult AddTransaction(TransactionTBL transaction)
         {
+            int? userID = HttpContext.Session.GetInt32("userID");
+            if(userID == null)
+            {
+                TempData["AlertMessage"] = "Please Login to purchase a product";
+                return RedirectToAction("Login", "User");
+            }
             var result2 = transtbl.PlaceOrder(transaction);
             return RedirectToAction("MyWork", "Product");
         }

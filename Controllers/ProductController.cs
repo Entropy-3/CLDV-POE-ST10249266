@@ -18,6 +18,7 @@ namespace CLDV_POE_ST10249266.Controllers
         [HttpGet]
         public ActionResult AddProduct()
         {
+            //checks to see if user is logged in
             if (HttpContext.Session.GetInt32("userID") == null)
             {
                 TempData["AlertMessage"] = "Please log in to sell products.";
@@ -37,6 +38,13 @@ namespace CLDV_POE_ST10249266.Controllers
         {
             int? userID = HttpContext.Session.GetInt32("userID");
             ViewData["UserID"] = userID;
+
+            //checks to see if user is logged in
+            if (userID == null)
+            {
+                TempData["AlertMessage"] = "Please log in to view transaction history.";
+                return RedirectToAction("Login", "User");
+            }
             var transactions = TransactionTBL.GetTransactions((int)userID);
             return View(transactions);
         }
