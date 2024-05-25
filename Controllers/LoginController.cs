@@ -25,9 +25,10 @@ namespace CLDV_POE_ST10249266.Controllers
             }
             else
             {
-                // User not found, handle accordingly (e.g., show error message)
-                return View("Login");
+                TempData["AlertMessage"] = "Please log in to view transaction history.";
+                return RedirectToAction("Login", "User");
             }
         }
+
     }
 }

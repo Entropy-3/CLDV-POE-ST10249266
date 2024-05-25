@@ -8,7 +8,7 @@ namespace CLDV_POE_ST10249266.Models
 
         public int SelectUser(string email, string password)
         {
-            int userId = -1; // Default value if user is not found
+            int userId = -1;
             using (SqlConnection con = new SqlConnection(con_string))
             {
                 string sql = "SELECT user_id FROM tblUsers WHERE userEmail = @Email AND userPassword = @Password";
