@@ -21,14 +21,12 @@ namespace CLDV_POE_ST10249266.Controllers
             {
                 HttpContext.Session.SetInt32("userID", userID);
                 return RedirectToAction("Index", "Home", new { userID = userID });
-
             }
             else
             {
-                TempData["AlertMessage"] = "Please log in to view transaction history.";
+                TempData["AlertMessage"] = "Username or password is incorrect!";
                 return RedirectToAction("Login", "User");
             }
         }
-
     }
 }

@@ -5,12 +5,16 @@ namespace CLDV_POE_ST10249266.Controllers
 {
     public class ProductController : Controller
     {
-       
         public productTBL prodtbl = new productTBL();
 
         [HttpPost]
         public ActionResult AddProduct(productTBL products)
         {
+            if (products == null)
+            {
+                TempData["AlertMessage"] = "Please fill in all fields.";
+                return RedirectToAction("AddProduct", "Product");
+            }
             var result2 = prodtbl.insert_Product(products);
             return RedirectToAction("Index", "Home");
         }
@@ -34,6 +38,7 @@ namespace CLDV_POE_ST10249266.Controllers
             var products = ProductDisplayModel.SelectProducts();
             return View(products);
         }
+
         public IActionResult Transactions()
         {
             int? userID = HttpContext.Session.GetInt32("userID");
