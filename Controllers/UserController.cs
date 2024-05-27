@@ -13,6 +13,12 @@ namespace CLDV_POE_ST10249266.Controllers
             var result = usrtbl.insert_User(Users);
             return RedirectToAction("Index", "Home");
         }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("userID");
+            return RedirectToAction("Index", "Home");
+        }
+
 
         [HttpGet]
         public ActionResult SignUp()
